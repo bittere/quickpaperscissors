@@ -2,7 +2,6 @@ import { GameChoiceButton } from '@/components/game-choice-button';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Copy } from 'lucide-react';
 
 type Choice = 'rock' | 'paper' | 'scissors';
 type Winner = 'You' | 'Opponent' | 'Tie' | null;
@@ -27,7 +26,7 @@ const ChoiceDisplay = ({ choice, isWinner }: { choice: Choice; isWinner: boolean
         : 'bg-muted/50'
     )}
   >
-    <GameChoiceButton choice={choice} onSelect={() => {}} disabled />
+    <GameChoiceButton choice={choice} onChoiceSelect={() => {}} disabled />
   </motion.div>
 );
 

@@ -9,7 +9,6 @@ import { Copy, Check, ArrowLeft } from 'lucide-react';
 import { GameChoiceButton } from '@/components/game-choice-button';
 import { motion } from 'framer-motion';
 import { GameResultDisplay } from '@/components/game-result-display';
-import { PeerStatusIndicator } from '@/components/peer-status-indicator';
 
 type GameState = 'initial' | 'creating' | 'connecting' | 'connected' | 'countdown' | 'playing' | 'result';
 type Choice = 'rock' | 'paper' | 'scissors';
@@ -420,9 +419,9 @@ function App() {
 
           {gameState === 'playing' && !choice && (
             <div className="flex justify-center space-x-4">
-              <GameChoiceButton choice="rock" onSelect={sendChoice} />
-              <GameChoiceButton choice="paper" onSelect={sendChoice} />
-              <GameChoiceButton choice="scissors" onSelect={sendChoice} />
+              <GameChoiceButton choice="rock" onChoiceSelect={sendChoice} />
+              <GameChoiceButton choice="paper" onChoiceSelect={sendChoice} />
+              <GameChoiceButton choice="scissors" onChoiceSelect={sendChoice} />
             </div>
           )}
 

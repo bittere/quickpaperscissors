@@ -17,18 +17,18 @@ const choiceIcons: Record<Choice, ChoiceMap> = {
 
 interface GameChoiceButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   choice: Choice;
-  onSelect: (choice: Choice) => void;
+  onChoiceSelect: (choice: Choice) => void;
   selected?: boolean;
 }
 
-export function GameChoiceButton({ choice, onSelect, selected = false, className, ...props }: GameChoiceButtonProps) {
+export function GameChoiceButton({ choice, onChoiceSelect, selected = false, className, ...props }: GameChoiceButtonProps) {
   const { icon: Icon, label } = choiceIcons[choice];
 
   return (
     <Button
       variant={selected ? 'default' : 'outline'}
       size="lg"
-      onClick={() => onSelect(choice)}
+      onClick={() => onChoiceSelect(choice)}
       className={cn('h-32 w-32 flex flex-col items-center justify-center gap-2 text-xl font-bold transition-all duration-300 hover:scale-[1.05]', selected && 'ring-4 ring-primary-500/50 scale-[1.05]', className)}
       {...props}
     >
