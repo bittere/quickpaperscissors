@@ -1,13 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Viewport for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Document description for SEO -->
+    <meta name="description" content="QuickPaperScissors - A fast and fun paper scissors game" />
+    <!-- Set theme color for mobile browsers -->
+    <meta name="theme-color" content="#023e8a" />
+    <!-- Preconnect to improve resource loading if needed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Optional: Include a font -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" /> -->
     <title>QuickPaperScissors</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" role="main"></div>
+    <!-- Use type module for modern ES modules -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
