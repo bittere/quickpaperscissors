@@ -1,69 +1,46 @@
-# React + TypeScript + Vite
+# QuickPaperScissors
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, real-time multiplayer Rock, Paper, Scissors game built with React, TypeScript, and Vite. This project utilizes PeerJS for peer-to-peer connectivity, allowing users to play against each other without a dedicated backend server.
 
-Currently, two official plugins are available:
+## 🚀 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Frontend:** React 19
+*   **Language:** TypeScript
+*   **Build Tool:** Vite
+*   **Package Manager:** bun
+*   **Styling:** Tailwind CSS (with `@tailwindcss/vite`)
+*   **Peer-to-Peer:** PeerJS
 
-## Expanding the ESLint configuration
+## 🛠️ Installation and Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/bittere/quickpaperscissors.git
+    cd quickpaperscissors
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2.  **Install dependencies:**
+    This project uses `bun` as the package manager.
+    ```bash
+    bun install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 💻 Available Scripts
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+In the project directory, you can run:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `bun dev` | `vite` | Runs the app in development mode. Open [http://localhost:5173](http://localhost:5173) to view it in the browser. |
+| `bun build` | `tsc -b && vite build` | Builds the app for production to the `dist` folder. |
+| `bun lint` | `eslint .` | Runs the linter to check for code quality issues. |
+| `bun preview` | `vite preview` | Serves the production build locally for testing. |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📝 Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The core application logic resides in the `src/` directory:
+
+*   `src/App.tsx`: Main application component.
+*   `src/main.tsx`: Entry point for the React application.
+*   `src/components/`: Contains reusable UI components, including game-specific logic and a custom UI library (`ui/`).
+*   `src/lib/utils.ts`: Utility functions.
