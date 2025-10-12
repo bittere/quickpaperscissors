@@ -1,0 +1,35 @@
+# Dependencies
+/node_modules
+/dist
+/build
+/out
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+bun-debug.log*
+*.log
+.npm
+.eslintcache
+.stylelintcache
+
+# Environment
+.env
+.env.local
+
+# Build/Cache Outputs
+.vite
+/.bun/
+/bun.lockb
+
+# Editor/OS artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
