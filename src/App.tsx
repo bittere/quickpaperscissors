@@ -9,6 +9,7 @@ import { Copy, Check, ArrowLeft } from 'lucide-react';
 import { GameChoiceButton } from '@/components/game-choice-button';
 import { motion } from 'framer-motion';
 import { GameResultDisplay } from '@/components/game-result-display';
+import { PeerStatusIndicator } from './components/peer-status-indicator';
 
 type GameState = 'initial' | 'creating' | 'connecting' | 'connected' | 'countdown' | 'playing' | 'result';
 type Choice = 'rock' | 'paper' | 'scissors';
@@ -175,7 +176,7 @@ function App() {
       if (unstableTimeoutRef.current) clearTimeout(unstableTimeoutRef.current);
       if (offlineTimeoutRef.current) clearTimeout(offlineTimeoutRef.current);
     };
-  }, [isConnected]);
+  }, [isConnected, gameState]);
 
   useEffect(() => {
     if (gameState === 'countdown') {
@@ -311,26 +312,7 @@ function App() {
       {winner === 'You' && <EmojiBackground />}
       <div className="bg-background text-foreground min-h-screen flex flex-col items-center justify-center font-sans relative">
         <div className="absolute top-4 left-1/2 -translate-x-1/2">
-          <div className="flex items-center divide-x divide-border rounded-full border bg-muted/50 text-sm text-muted-foreground backdrop-blur-sm">
-            <div className="flex items-center gap-2 px-3 py-1">
-              <span>You</span>
-              <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></div>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1">
-              <span>Peer</span>
-              {isConnected ? (
-                peerStatus === 'online' ? (
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></div>
-                ) : peerStatus === 'unstable' ? (
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500 animate-pulse"></div>
-                ) : (
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
-                )
-              ) : (
-                <div className="h-2.5 w-2.5 rounded-full bg-neutral-500"></div>
-              )}
-            </div>
-          </div>
+          <PeerStatusIndicator isConnected={isConnected} peerStatus={peerStatus} />
         </div>
         <div className="absolute top-4 right-4">
           <ModeToggle />
