@@ -6,6 +6,8 @@ type PeerStatus = 'online' | 'unstable' | 'offline';
 interface PeerStatusIndicatorProps {
   isConnected: boolean;
   peerStatus: PeerStatus;
+  username?: string;   // new prop for peer username
+  avatar?: string;     // new prop for peer avatar
 }
 
 const statusMap: Record<PeerStatus | 'disconnected', { label: string; colorClass: string }> = {
@@ -15,7 +17,12 @@ const statusMap: Record<PeerStatus | 'disconnected', { label: string; colorClass
   disconnected: { label: 'Disconnected', colorClass: 'bg-neutral-500' },
 };
 
-export function PeerStatusIndicator({ isConnected, peerStatus }: PeerStatusIndicatorProps) {
+export function PeerStatusIndicator({
+  isConnected,
+  peerStatus,
+  username,
+  avatar,
+}: PeerStatusIndicatorProps) {
   const status = isConnected ? peerStatus : 'disconnected';
   const { label, colorClass } = statusMap[status];
 
@@ -26,9 +33,26 @@ export function PeerStatusIndicator({ isConnected, peerStatus }: PeerStatusIndic
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       className="flex items-center gap-2 px-3 py-1 rounded-full border bg-muted/50 text-sm text-muted-foreground backdrop-blur-sm"
     >
-      <div className={cn('h-2.5 w-2.5 rounded-full', colorClass, {
-        'animate-pulse': status === 'online' || status === 'unstable',
-      })}></div>
+      {/* Avatar */}
+      {avatar && (
+        <img
+          src={avatar}
+          alt={username || 'Peer avatar'}
+          className="w-6 h-6 rounded-full object-cover"
+        />
+      )}
+
+      {/* Username */}
+      <span className="font-medium">{username || 'Peer'}</span>
+
+      {/* Status Dot */}
+      <div
+        className={cn('h-2.5 w-2.5 rounded-full', colorClass, {
+          'animate-pulse': status === 'online' || status === 'unstable',
+        })}
+      ></div>
+
+      {/* Status Label */}
       <span className="font-medium">{label}</span>
     </motion.div>
   );
