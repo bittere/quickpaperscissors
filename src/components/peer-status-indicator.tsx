@@ -6,8 +6,8 @@ type PeerStatus = 'online' | 'unstable' | 'offline';
 interface PeerStatusIndicatorProps {
   isConnected: boolean;
   peerStatus: PeerStatus;
-  username?: string;   // new prop for peer username
-  avatar?: string;     // new prop for peer avatar
+  username?: string;   // peer username
+  avatar?: string;     // peer avatar URL
 }
 
 const statusMap: Record<PeerStatus | 'disconnected', { label: string; colorClass: string }> = {
@@ -34,13 +34,11 @@ export function PeerStatusIndicator({
       className="flex items-center gap-2 px-3 py-1 rounded-full border bg-muted/50 text-sm text-muted-foreground backdrop-blur-sm"
     >
       {/* Avatar */}
-      {avatar && (
-        <img
-          src={avatar}
-          alt={username || 'Peer avatar'}
-          className="w-6 h-6 rounded-full object-cover"
-        />
-      )}
+      <img
+        src={avatar || '/default-avatar.png'}  // default avatar if none provided
+        alt={username || 'Peer avatar'}
+        className="w-6 h-6 rounded-full object-cover"
+      />
 
       {/* Username */}
       <span className="font-medium">{username || 'Peer'}</span>
@@ -57,3 +55,4 @@ export function PeerStatusIndicator({
     </motion.div>
   );
 }
+
