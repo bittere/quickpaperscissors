@@ -1,4 +1,5 @@
 import { GameChoiceButton } from '@/components/game-choice-button';
+import { PeerStatusIndicator } from '@/components/peer-status-indicator';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -12,6 +13,8 @@ interface GameResultDisplayProps {
   winner: Winner;
   onReset: () => void;
   isResetValidating: boolean;
+  remoteUsername?: string; // new prop
+  remoteAvatar?: string;   // new prop
 }
 
 const ChoiceDisplay = ({ choice, isWinner }: { choice: Choice; isWinner: boolean }) => (
@@ -67,7 +70,15 @@ const WinnerMessage = ({ winner }: { winner: Winner }) => {
   );
 };
 
-export function GameResultDisplay({ myChoice, remoteChoice, winner, onReset, isResetValidating }: GameResultDisplayProps) {
+export function GameResultDisplay({
+  myChoice,
+  remoteChoice,
+  winner,
+  onReset,
+  isResetValidating,
+  remoteUsername,
+  remoteAvatar,
+}: GameResultDisplayProps) {
   const isMyChoiceWinning = winner === 'You';
   const isRemoteChoiceWinning = winner === 'Opponent';
 
@@ -76,12 +87,22 @@ export function GameResultDisplay({ myChoice, remoteChoice, winner, onReset, isR
       <WinnerMessage winner={winner} />
 
       <div className="flex justify-center space-x-6 w-full max-w-sm">
+        {/* Your Choice */}
         <div className="flex flex-col items-center">
           <p className="font-semibold text-lg mb-2">Your Choice</p>
           <ChoiceDisplay choice={myChoice} isWinner={isMyChoiceWinning} />
         </div>
 
+        {/* Opponent Choice */}
         <div className="flex flex-col items-center">
+          {/* Peer Status / Avatar */}
+          <PeerStatusIndicator
+            isConnected={true}  // you can adjust based on actual connection status
+            peerStatus="online" // adjust dynamically if needed
+            username={remoteUsername}
+            avatar={remoteAvatar}
+          />
+
           <p className="font-semibold text-lg mb-2">Opponent's Choice</p>
           <ChoiceDisplay choice={remoteChoice} isWinner={isRemoteChoiceWinning} />
         </div>
